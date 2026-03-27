@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Vitality | Fitness Redefined</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+
+<div id="welcome-msg"></div>
+
+<header>
+  <img src="images/logo.png" alt="Apex Vitality Logo" class="logo">
+  <h1>Apex Vitality</h1>
+  <p>Train Harder. Rise Higher. Become Number One.</p>
+</header>
+
+<nav>
+  <a href="#gym">Gym</a>
+  <a href="#equipment">Equipment</a>
+  <a href="#app">Workout App</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="gym">
+  <div class="section-title">
+    <h2>Our Gym</h2>
+    <p>One elite facility. Unlimited potential.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img src="images/gym1.png" alt="Gym Equipment">
+      <h3>State-of-the-Art Equipment</h3>
+      <div class="card-info">
+        <p>Premium machines and free weights.</p>
+        <button onclick="window.location='gym.html'">Explore Gym</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/trainer.png" alt="Trainer">
+      <h3>Expert Trainers</h3>
+      <div class="card-info">
+        <p>Certified coaches to push your limits.</p>
+        <button onclick="window.location='gym.html'">Explore Gym</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/hiit.png" alt="HIIT">
+      <h3>High-Intensity Atmosphere</h3>
+      <div class="card-info">
+        <p>A no-excuses environment.</p>
+        <button onclick="window.location='gym.html'">Explore Gym</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipment">
+  <div class="section-title">
+    <h2>Fitness Equipment</h2>
+    <p>Bring the Apex experience home.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img src="images/equip1.png" alt="Dumbbells">
+      <h3>Strength Gear</h3>
+      <div class="card-info">
+        <p>Bars, plates, racks, and accessories.</p>
+        <button onclick="window.location='equipment.html'">Explore Equipment</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/equip2.png" alt="Cardio">
+      <h3>Cardio Machines</h3>
+      <div class="card-info">
+        <p>Treadmills, bikes, and rowers.</p>
+        <button onclick="window.location='equipment.html'">Explore Equipment</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/equip3.png" alt="Apparel">
+      <h3>Apparel & Accessories</h3>
+      <div class="card-info">
+        <p>Minimal, aggressive designs.</p>
+        <button onclick="window.location='equipment.html'">Explore Equipment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="app">
+  <div class="section-title">
+    <h2>Apex Vitality App</h2>
+    <p>Your personal trainer, anywhere.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img src="images/app1.png" alt="Workout Plan">
+      <h3>Custom Workout Plans</h3>
+      <div class="card-info">
+        <p>Programs built around your goals.</p>
+        <button onclick="window.location='app.html'">Explore App</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/app2.png" alt="Progress">
+      <h3>Progress Tracking</h3>
+      <div class="card-info">
+        <p>Track strength, endurance, and metrics.</p>
+        <button onclick="window.location='app.html'">Explore App</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/app3.png" alt="Sync">
+      <h3>Gym Integration</h3>
+      <div class="card-info">
+        <p>Sync workouts between gym and home.</p>
+        <button onclick="window.location='app.html'">Explore App</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta" id="contact">
+  <h2>Start Your Apex Journey</h2>
+  <p>Join the gym, upgrade your gear, or download the app today.</p>
+  <button onclick="openModal()">Get Started</button>
+</div>
+
+<!-- Modal -->
+<div id="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <h3 style="margin-bottom:20px;">Quick Sign‑Up</h3>
+    <form id="signupForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <select required>
+        <option value="">I’m interested in…</option>
+        <option>Gym Membership</option>
+        <option>Fitness Equipment</option>
+        <option>Workout App</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Apex Vitality. All Rights Reserved.</p>
+</footer>
+
+<script>
+emailjs.init("YOUR_USER_ID");
+
+function openModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// Welcome message
+const user = localStorage.getItem('apexUser');
+if(user){
+  document.getElementById('welcome-msg').innerText = `Welcome, ${user}`;
+}
+
+document.getElementById('signupForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fullName = this.querySelector('input[type="text"]').value;
+  const email = this.querySelector('input[type="email"]').value;
+  const interest = this.querySelector('select').value;
+
+  localStorage.setItem('apexUser', fullName);
+
+  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+    from_name: fullName,
+    from_email: email,
+    interest: interest
+  }).then(()=>{
+    alert('Thanks for signing up! Check your email.');
+  });
+
+  if(interest==='Gym Membership'){ window.location='gym.html'; }
+  else if(interest==='Fitness Equipment'){ window.location='equipment.html'; }
+  else if(interest==='Workout App'){ window.location='app.html'; }
+});
+</script>
+
+</body>
+</html>
